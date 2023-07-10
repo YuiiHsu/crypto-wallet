@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  color: #b9d1c5;
+}
+.coinContent{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.coinItem {
+  height: 100px;
+  flex-grow: 1;
+  margin: 10px;
+  display: flex;
+  border: 1px solid rgb(185, 182, 159);
+  border-bottom: 3px solid rgb(185, 182, 159);
+  border-radius: 15px;
+  justify-content: space-around;
+  flex: 1;
+}
+.coinItem label{
+  word-wrap: break-word;
+  text-align: center;
+  display: block;
+}
+.coinItem .content {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 20px
+}
+.coinItem .value{
+  text-align: center;
+  font-size: 36px;
+}
+button {
+  border-radius: 5px;
+  margin: 10px 20px;
+}

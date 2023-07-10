@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  color: #ffffff;
+}
+.content {
+  padding: 30px;
+  background: #b9b69f;
+  width: 500px;
+  height: 400px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.content .block{
+  border-radius: 15px;
+  width: 380px;
+  height: 180px;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #536d60;
+}
+.content button{
+  height: 100px;
+  width: 200px;
+}
+.content .block .coin{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+select{
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  font-size: 15px;
+  background: #b9b69f;
+  font-weight: bold;
+}
+span{
+  font-size: 25px;
+}
+label{
+  color: #b9b69f;
+}
+input{
+  outline: none;
+  background: #f3f3dc;
+  border-color: #536d60;
+  height: 30px;
+  margin: 0;
+}
+input:disabled{
+  background: #b7b7b7;
+}
