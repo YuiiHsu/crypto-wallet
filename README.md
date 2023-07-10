@@ -7,7 +7,7 @@
 ## 前置條件
 1. Metamask 帳號
 2. Ganache rpc server：目前因都是使用 ganache 上的測試幣來測試功能，之後預計會改成沒有 Ganache rpc server 也可使用！
-（https://medium.com/@yuideveloper/超詳細手把手發幣只要幾分鐘-db40c19a95f9）
+歡迎參考我的文章：https://medium.com/@yuideveloper/超詳細手把手發幣只要幾分鐘-db40c19a95f9
 
 ## 如何執行
 step 1: clone this repository from GitHub
