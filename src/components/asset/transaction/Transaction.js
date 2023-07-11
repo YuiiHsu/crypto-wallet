@@ -4,11 +4,13 @@ import { decimalToHex, amountToWei, checkEthFormat, validateNumber } from "../..
 import style from "./style.module.css";
 import { InfuralApi } from "../../../thirdPartyAPI/infura";
 import { MetamaskApi } from "../../../thirdPartyAPI/metaMask";
+import { useTranslation } from 'react-i18next';
 
 const Transaction = ({clickedCoin, fromAddress, setOpenTransDialog, getAllBalance}) => {
   const [toAddress, setToAddress] = useState('');
   const [value, setValue] = useState(0);
   const { privateKey, address} = useSelector(store => store.account);
+  const { t } = useTranslation();
 
   /**
    * 確認當前 chain id 是否符合預期，如果沒有就切換。
@@ -31,11 +33,11 @@ const Transaction = ({clickedCoin, fromAddress, setOpenTransDialog, getAllBalanc
    */
   async function sendTransaction (currentCoin, fromAddress, toAddress, value) {
     if(!toAddress || !fromAddress) {
-      alert("Please enter the Ethereum address for transfer.");
+      alert(t('addressHint'));
     }
 
     if(!value) {
-      alert("Please enter the quantity you want to transfer.",value);
+      alert(t('valueHint'),value);
     }
 
     const gasPrice = await InfuralApi.GetGasPrice();
@@ -54,7 +56,7 @@ const Transaction = ({clickedCoin, fromAddress, setOpenTransDialog, getAllBalanc
     if(txHash) {
       await getAllBalance([currentCoin], fromAddress, true);
       setOpenTransDialog(false);
-      alert(`已送出交易，TxHash: ${txHash}`);
+      alert(t('submintTransaction'));
     }
 	}
 
@@ -71,20 +73,20 @@ const Transaction = ({clickedCoin, fromAddress, setOpenTransDialog, getAllBalanc
     <button className={style.close}
       onClick={() => setOpenTransDialog(false)}>X
     </button>
-    <h2>Transaction</h2>
+    <h2>{t('transaction')}</h2>
     <div className={style.content}>
       <div className={style.item}>
-        <label>Receiving address</label>
-        <label>Value</label>
+        <label>{t('receivingAddress')}</label>
+        <label>{t('value')}</label>
       </div>
       <div>
 				<div>
-					<input placeholder="Please enter the receiving address." onChange={e => {handleToAddress(e)}}/>
-				<p>{!checkEthFormat(toAddress) && "Please enter a valid ETH address."}</p>
+					<input placeholder={t('addressHint')} onChange={e => {handleToAddress(e)}}/>
+				<p>{!checkEthFormat(toAddress) && t('validAddressHint')}</p>
 				</div>
 				<div>
-					<input placeholder="Please enter the amount you want to transfer." onChange={e => {setValue(e.target.value)}}/>
-					<p>{!validateNumber(value,clickedCoin.decimal) && "Please enter a valid value"}</p>
+					<input placeholder={t('valueHint')} onChange={e => {setValue(e.target.value)}}/>
+					<p>{!validateNumber(value,clickedCoin.decimal) && t('amountValidHint')}</p>
 				</div>
       </div>
     </div>

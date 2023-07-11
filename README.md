@@ -48,6 +48,10 @@ step 3: npm start
 用途：js library，我用來處理深拷貝。
 - bignumber.js
 用途：用於數字很大的處理。
+- react-i18next 
+用途：多語系
+- i18next
+用途：多語系
 - uuid:
 用途：產生唯一值
 - ESLint（standard）:

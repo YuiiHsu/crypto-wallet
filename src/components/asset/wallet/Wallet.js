@@ -6,12 +6,14 @@ import { weiToAmount } from "../../../utility";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from 'react-i18next';
 
 const Wallet = ({coins}) => {
   const [openTransDialog, setOpenTransDialog] = useState(false);
   const [coinsData, setCoinsData] = useState([...coins]);
   const [clickedCoin, setClickedCoin] = useState({});
   const address = useSelector(store => store.account.address);
+  const { t } = useTranslation();
 
   /**
    * 取得幣種清單內該地址的所有餘額
@@ -21,7 +23,7 @@ const Wallet = ({coins}) => {
    */
   async function getAllBalance (data, address, singleCoinName) {
     if (!data || !address){
-      return alert("There is no list of currencies or addresses.");
+      return alert(t('errorBalance'));
     }
 
     let coinList = data;
@@ -62,7 +64,7 @@ const Wallet = ({coins}) => {
   },[address])
 
   return <div className={style.container}>
-    address:{address}
+    {t('address')}:{address}
     <div className={style.coinContent}>
     {
     coinsData.map(coin => {
@@ -74,10 +76,10 @@ const Wallet = ({coins}) => {
           </div>
         </div>
           <button 
-              onClick={() => {
-              setOpenTransDialog(!openTransDialog);
-              setClickedCoin(coin);
-            }}>Send
+            onClick={() => {
+            setOpenTransDialog(!openTransDialog);
+            setClickedCoin(coin);}}>
+							{t('transfer')}
           </button>
       </div >
       })

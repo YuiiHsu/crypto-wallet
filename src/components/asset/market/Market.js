@@ -4,8 +4,10 @@ import ethIcon from "../../../images/icons/ETH.png";
 import { CryptoCompareApi } from "../../../thirdPartyAPI/cryptoCompare";
 import cloneDeep from 'lodash/cloneDeep';
 import { v4 as uuidv4 } from "uuid";
+import { useTranslation } from 'react-i18next';
 
 const Market =() => {
+  const { t } = useTranslation();
   const [coins, setCoins] = useState([
     {
       coinIcon: ethIcon,
@@ -47,10 +49,10 @@ const Market =() => {
 
   return <div className={style.container}>
     <div className={style.title}>
-      <label>Coin</label>
-      <label>Price (USD)</label>
-      <label>Percentage change</label>
-      <label>Line chart trend</label>
+      <label>{t('coin')}</label>
+      <label>{t('priceUsd')}</label>
+      <label>{t('percentageChange')}</label>
+      <label>{t('lineChart')}</label>
     </div>
     <div className={style.market}>
     {

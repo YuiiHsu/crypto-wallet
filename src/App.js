@@ -4,8 +4,10 @@ import Asset from './components/asset/Asset';
 import Nav from './components/nav/Nav'
 import Swap from './components/swap/Swap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
   const menu = [
     {
       pageId: "Wallet",
@@ -34,7 +36,7 @@ function App() {
         {/* content */}
         <div className={style.content}>
           <div className={style.title}>
-            <h1>{title}</h1>
+            <h1>{t(title.toLocaleLowerCase())}</h1>
           </div>
           <Routes>
             <Route path="/" element={<Asset />} />

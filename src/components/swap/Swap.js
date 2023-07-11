@@ -7,7 +7,9 @@ import { weiToAmount } from "../../utility";
 import { v4 as uuidv4 } from "uuid";
 import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk';
 import { ethers } from "ethers";
+import { useTranslation } from 'react-i18next';
 
+// 開發中，尚未整理
 const Swap =() => {
   const coins = useSelector(store => store.setting.coins);
   const address = useSelector(store => store.account.address);
@@ -18,6 +20,7 @@ const Swap =() => {
   const [fromBalance, setFromBalance] = useState(0);
   const [toBalance, setToBalance] = useState(0);
   const ytcdata = coins.find(coin => coin.shortName === 'YTC');
+  const { t } = useTranslation();
 
   async function test () {
     const chainId = ChainId.MAINNET;
@@ -38,7 +41,7 @@ const Swap =() => {
    */
   async function getBalance (coin, address) {
     if (!coin || !address){
-      return alert("資訊不足");
+      return alert(t('lackInfo'));
     }
 
       if (coin.shortName.toLowerCase() === "eth") {
@@ -72,8 +75,8 @@ const Swap =() => {
   return <div className={style.container}>
     <div className={style.content}>
       <div className={style.block}>
-        <span>From</span>
-        <label>Balance: {fromBalance}</label>
+        <span>{t('from')}</span>
+        <label>{t('balance')}: {fromBalance}</label>
         <div className={style.coin}>
           <input value={fromValue} onChange={(e) => setFromValue(e.target.value)}/>
           <select id="fromCoin" value={fromName} onChange={(e) => setFromName(e.target.value)}>
@@ -86,8 +89,8 @@ const Swap =() => {
       </div>
       <button onClick={() => {test()}}>TEST</button>
       <div className={style.block}>
-        <span>To</span>
-        <label>Balance: {toBalance}</label>
+        <span>{t('to')}</span>
+        <label>{t('balance')}: {toBalance}</label>
         <div className={style.coin}>
           <input disabled value={toValue}/>
           <select id="toCoin" value={toName} onChange={(e) => setToName(e.target.value)}>

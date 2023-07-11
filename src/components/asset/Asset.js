@@ -5,8 +5,10 @@ import Market from './market/Market';
 import style from "./style.module.css";
 import { MetamaskApi } from '../../thirdPartyAPI/metaMask';
 import * as accountDuck from "../../store/ducks/account.duck";
+import { useTranslation } from 'react-i18next';
 
 const Asset = () => {
+  const { t } = useTranslation();
 	const metamaskDownloadUrl = "https://metamask.io/download/";
   const dispatch = useDispatch();
   const address = useSelector(store => store.account.address);
@@ -43,17 +45,16 @@ const Asset = () => {
     <Market />
     {!address && 
     <div className={style.loginDialog}>
-      <h3>Please choose a login method.</h3>
+      <h3>{t('loginMethod')}</h3>
       <div className={style.options}>
         <div className={style.option}>
-          Private Key
+					{t('privateKey')}
         </div>
         <div className={style.option}
           onClick={() => {
           !metamaskInstalled ? 
-          window.open(metamaskDownloadUrl) : connectAccount()
-          }}>
-          Metamask
+          window.open(metamaskDownloadUrl) : connectAccount()}}>
+					{t('metamask')}
         </div>
       </div>
     </div>
